@@ -4,24 +4,24 @@
     <div>
       <swiper ref="mySwiper" :options="swiperOptions" v-if="bannerList">
         <swiper-slide class="banner-item" v-for="item in bannerList" :key="item.id">
-          <a target="_blank" :href="item.linkUrl">
-            <img :src="item.pic" width="100%" style="display:block;" />
+          <a target="_blank" :href="item.h5Url">
+            <img :src="item.picUrl" width="100%" style="display:block;" />
           </a>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
     <!-- 歌单推荐 -->
-    <div class="recommend-list">
-      <h1 calss="list-title">热门歌单推荐</h1>
+    <div class="disc-list">
+      <h1 class="title">热门歌单推荐</h1>
       <ul>
         <li class="item" v-for="(item, i) in discList" :key="i">
           <div class="icon">
-            <img v-lazy="item.imgurl" width="60" height="60" />
+            <img v-lazy="item.cover" width="60" height="60" />
           </div>
           <div class="text">
-            <h2 class="name" v-html="item.creator.name"></h2>
-            <p class="desc" v-html="item.dissname"></p>
+            <h2 class="name" v-html="item.title"></h2>
+            <p class="desc" v-html="item.username"></p>
           </div>
         </li>
       </ul>
@@ -56,13 +56,13 @@ export default {
   },
   created() {
     this.getBanner()
-    // this.getDiscList()
+    this.getDiscList()
   },
   methods: {
     getBanner() {
       getBanner().then(res => {
         console.log(res)
-        this.bannerList = res.banners
+        this.bannerList = res.data
       })
     },
     getDiscList() {
@@ -77,6 +77,7 @@ export default {
 
 <style lang="stylus">
 @import "../assets/stylus/variable"
+
   // 轮播图
  .swiper-pagination-bullet
     opacity: 1;
@@ -85,10 +86,34 @@ export default {
      width 20px
      border-radius: 5px
      background: $color-text-ll
- .recommend-list
-   height: 65px
-   line-height: 65px
-   text-align center
-   font-size: $font-size-medium
-   color: $color-theme
+
+.disc-list
+  .title
+    height: 65px
+    line-height: 65px
+    text-align: center
+    font-size: $font-size-medium
+    color: $color-theme
+  .item
+    display: flex
+    box-sizing: border-box
+    align-items: center
+    padding: 0 20px 20px 20px
+    .icon
+      flex: 0 0 60px
+      width: 60px
+      padding-right: 20px
+    .text
+      display: flex
+      flex-direction: column
+      justify-content: center
+      flex: 1
+      line-height: 20px
+      overflow: hidden
+      font-size: $font-size-medium
+      .name
+        margin-bottom: 10px
+        color: $color-text
+      .desc
+        color: $color-text-d
 </style>

@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const http = axios.create({
-  // baseURL: 'http://localhost:3300',
-  baseURL: 'https://musicapi.adicw.cn/',
+  baseURL: 'http://localhost:3300',
+  // baseURL: 'https://musicapi.adicw.cn/',
   timeout: 5000
 })
 
