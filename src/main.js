@@ -9,7 +9,7 @@ import './assets/stylus/index.styl'
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
-  loading: './assets/image/loading-bars.svg'
+  loading: require('./assets/image/loading-bars.svg')
 })
 
 // 解决移动端派发点击事件存在300ms延迟

@@ -1,3 +1,13 @@
 @import "./reset.styl"
 @import "./base.styl"
 @import "./icon.styl"
+
+  img[lazy="loading"] {
+		width: 30px;
+		height: 30px;
+    opacity 0.5
+	}
+  img[lazy="loaded"] {
+    opacity 1
+    transition: opacity 0.5s
+	}
